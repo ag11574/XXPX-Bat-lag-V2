@@ -1,18 +1,12 @@
--- [[ XXPX Bat lag V2 - ULTIMATE SECURITY ]] --
--- このスクリプトは、正しいKeyが定義されていない限り動作しません。
-
+-- [[ XXPX SECURITY CHECK ]] --
 local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
 
--- 【セキュリティ・ゲート】
--- getgenv().XXPX_KEY が設定されていない、または空の場合は即座にKickします。
+-- getgenv().XXPX_KEY が正しく設定されていない場合に認証エラーを出す
 if not getgenv().XXPX_KEY or type(getgenv().XXPX_KEY) ~= "string" or getgenv().XXPX_KEY == "" then
-    LocalPlayer:Kick("\n\n[XXPX Security]\n認証エラー: Keyが見つかりません。\nDiscordで /getscript を実行し、出力されたコードをそのまま貼り付けてください。\nURLだけを直接実行することは禁止されています。")
+    LocalPlayer:Kick("This key cannot be used at the moment. If you want to use it again, you will need to use a new key.")
     return
 end
-
--- 実行ログ（デバッグ用）
-print("XXPX Auth Success. Key: " .. getgenv().XXPX_KEY)
 
 -- ==========================================
 -- ここからメインのUIソースコード
