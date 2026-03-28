@@ -1,3 +1,18 @@
+-- ==========================================
+-- XXPX Bat lag V2 - セキュリティ・ガード
+-- ==========================================
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+
+-- 【重要】Keyが入っていない、または形式が違う場合はキックする
+if getgenv().XXPX_KEY == nil or type(getgenv().XXPX_KEY) ~= "string" then
+    LocalPlayer:Kick("\n[XXPX Error]\nKeyが見つかりません。Discordで取得してください。")
+    return
+end
+
+-- ==========================================
+-- ここからあなたのUIソースコード
+-- ==========================================
 local ScreenGui = Instance.new("ScreenGui")
 local Frame = Instance.new("Frame")
 local TopBar = Instance.new("Frame")
@@ -93,9 +108,7 @@ Layout.SortOrder = Enum.SortOrder.LayoutOrder
 local UIPadding = Instance.new("UIPadding", ButtonFrame)
 UIPadding.PaddingTop = UDim.new(0, 8)
 
-local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
-local LocalPlayer = Players.LocalPlayer
 
 local speedOn = false
 local espOn = false
