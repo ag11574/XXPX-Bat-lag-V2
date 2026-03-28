@@ -1,17 +1,21 @@
--- ==========================================
--- XXPX Bat lag V2 - セキュリティ・ガード
--- ==========================================
+-- [[ XXPX Bat lag V2 - ULTIMATE SECURITY ]] --
+-- このスクリプトは、正しいKeyが定義されていない限り動作しません。
+
 local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
 
--- 【重要】Keyが入っていない、または形式が違う場合はキックする
-if getgenv().XXPX_KEY == nil or type(getgenv().XXPX_KEY) ~= "string" then
-    LocalPlayer:Kick("\n[XXPX Error]\nKeyが見つかりません。Discordで取得してください。")
+-- 【セキュリティ・ゲート】
+-- getgenv().XXPX_KEY が設定されていない、または空の場合は即座にKickします。
+if not getgenv().XXPX_KEY or type(getgenv().XXPX_KEY) ~= "string" or getgenv().XXPX_KEY == "" then
+    LocalPlayer:Kick("\n\n[XXPX Security]\n認証エラー: Keyが見つかりません。\nDiscordで /getscript を実行し、出力されたコードをそのまま貼り付けてください。\nURLだけを直接実行することは禁止されています。")
     return
 end
 
+-- 実行ログ（デバッグ用）
+print("XXPX Auth Success. Key: " .. getgenv().XXPX_KEY)
+
 -- ==========================================
--- ここからあなたのUIソースコード
+-- ここからメインのUIソースコード
 -- ==========================================
 local ScreenGui = Instance.new("ScreenGui")
 local Frame = Instance.new("Frame")
